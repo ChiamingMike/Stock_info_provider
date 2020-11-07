@@ -1,0 +1,12 @@
+BasicInfoProvider:
+  profile: https://finance.yahoo.com/quote/SYMBOL
+
+AverageDataProvider:
+  daily_data: 'https://query1.finance.yahoo.com/v7/finance/download/SYMBOL?period1={START_TIME_UNIX}&period2={END_TIME_UNIX}&interval=1d&events=history'
+  weekly_data: 'https://query1.finance.yahoo.com/v7/finance/download/SYMBOL?period1={START_TIME_UNIX}&period2={END_TIME_UNIX}&interval=1wk&events=history'
+  monthly_data: 'https://query1.finance.yahoo.com/v7/finance/download/SYMBOL?period1={START_TIME_UNIX}&period2={END_TIME_UNIX}&interval=1mo&events=history'
+
+FinancialReportsProvider:
+  balance_sheet_annual: https://reuters.com/companies/SYMBOL/financials/balance-sheet-annual
+  income_statement_annual: https://reuters.com/companies/SYMBOL/financials/income-statement-annual
+  cash_flow_annual: https://reuters.com/companies/SYMBOL/financials/cash-flow-annual
