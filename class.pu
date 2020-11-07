@@ -1,0 +1,64 @@
+@startuml
+
+title Stock Information Provider
+
+MesseageSender -> StockInfoCenter: User name and stock symbol
+activate StockInfoCenter
+    StockInfoCenter -> BasicInfoProvider: Stock symbol
+    activate BasicInfoProvider
+        BasicInfoProvider -> DataContainer: Symbol profile
+        activate DataContainer
+            DataContainer --> BasicInfoProvider:
+        deactivate DataContainer
+        BasicInfoProvider --> StockInfoCenter: Symbol profile
+    deactivate BasicInfoProvider
+
+    StockInfoCenter -> AverageDataProvider: Stock symbol
+    activate AverageDataProvider
+        AverageDataProvider -> DataContainer: Stock symbol
+        activate DataContainer
+            DataContainer --> AverageDataProvider: Historical data
+        deactivate DataContainer
+
+        AverageDataProvider -> Calculator: Historical data
+        activate Calculator
+            Calculator --> AverageDataProvider: Average data
+        deactivate Calculator
+
+        AverageDataProvider -> DataContainer: Average data
+        activate DataContainer
+            DataContainer --> AverageDataProvider:
+        deactivate DataContainer
+
+        AverageDataProvider --> StockInfoCenter: Historical average data
+    deactivate AverageDataProvider
+
+    StockInfoCenter -> FinancialReportsProvider: Stock symbol
+    activate FinancialReportsProvider
+        FinancialReportsProvider -> DataContainer: Financial statements
+        activate DataContainer
+            DataContainer --> FinancialReportsProvider:
+        deactivate DataContainer
+
+        FinancialReportsProvider --> StockInfoCenter: Financial statements
+    deactivate FinancialReportsProvider
+
+    StockInfoCenter -> FundamentalInfoProvider: Stock symbol
+    activate FundamentalInfoProvider
+        FundamentalInfoProvider -> DataContainer: Get Financial statements
+        activate DataContainer
+            DataContainer --> FundamentalInfoProvider: Financial statements
+        deactivate DataContainer
+
+        FundamentalInfoProvider -> Calculator: Financial statements
+        activate Calculator
+            Calculator --> FundamentalInfoProvider: ROE, ROA, Net Income...etc
+        deactivate Calculator
+
+        FundamentalInfoProvider --> StockInfoCenter: ROE, ROA, Net Income...etc
+    deactivate FundamentalInfoProvider
+
+StockInfoCenter --> MesseageSender: Information about symbol
+deactivate StockInfoCenter
+
+@enduml
