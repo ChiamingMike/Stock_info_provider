@@ -39,7 +39,11 @@ class BasicInfoProvider(Provider):
                               header=None,
                               index_col=0,
                               encoding="utf-8")
-            self.__symbol_profile[key] = pd.concat([rs[0], rs[1]], axis=0)
+            df = pd.concat([rs[0], rs[1]], axis=0)
+            item = df.index.values.tolist()
+            val = df.iloc[:, 0].values.tolist()
+            self.__symbol_profile[key] = pd.DataFrame({"Item": item,
+                                                       "Value": val})
 
         self.data_container.register(self.__class__.__name__,
                                      self.__symbol_profile)
