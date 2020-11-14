@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<body>
+    <form action="/search_result" method="POST">
+        <input type="text" name="Symbol" placeholder="ie. 8766.T">
+        <input type="submit" value="Search">
+    </form>
+
+    <p class="result">
+        {% if input_symbol %}
+        <div>
+            <p>
+                Here is the result of {{ input_symbol }}
+            </p>
+            <div>
+                <p>
+                    {{tb1 | safe}}
+                </p>
+                <p>
+                    {{tb2 | safe}}
+                </p>
+                <p>
+                    {{tb3 | safe}}
+                </p>
+            </div>
+        </div>
+        {% endif %}
+    </p>
+</body>
+{% endblock %}
+
+<!-- <table id="table" align="center" border="1px">
+                <thead>
+                    {% for column in columns%}
+                    <th>{{column}}</th>
+                    {% endfor %}
+                </thead>
+                <tbody>
+                    <meta charset="UTF-8">
+                    {% for i in data %}
+                    <tr>
+                        {% for v in i %}
+                        <td>{{ v }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+            </table> -->
