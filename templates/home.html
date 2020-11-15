@@ -2,31 +2,34 @@
 {% block content %}
 
 <body>
-    <form action="/search_result" method="POST">
-        <input type="text" name="Symbol" placeholder="ie. 8766.T">
-        <input type="submit" value="Search">
-    </form>
+    <div class=container>
+        <form action="/search_result" method="POST">
+            <input type="text" name="Symbol" placeholder="ie. 8766.T">
+            <input type="submit" value="Search">
+        </form>
 
-    <p class="result">
-        {% if input_symbol %}
-        <div>
-            <p>
-                Here is the result of {{ input_symbol }}
-            </p>
+        <p class="result">
+            {% if input_symbol %}
             <div>
                 <p>
-                    {{tb1 | safe}}
+                    Here is the result of {{ input_symbol }}
                 </p>
-                <p>
-                    {{tb2 | safe}}
-                </p>
-                <p>
-                    {{tb3 | safe}}
-                </p>
+                <div>
+                    <p>
+                        <h2>Profile</h2>
+                        {{tb1 | safe}}
+                        <br>
+                        <h2>Recent five years</h2>
+                        {{tb2 | safe}}
+                        <br>
+                        <h2>Average price</h2>
+                        {{tb3 | safe}}
+                    </p>
+                </div>
             </div>
-        </div>
-        {% endif %}
-    </p>
+            {% endif %}
+        </p>
+    </div>
 </body>
 {% endblock %}
 
